@@ -15,6 +15,7 @@
 (function() {
     'use strict';
     var className = ['课程A-班级1', '课程B-班级2'];  // 任何你想选的课程班级
+    var teacherName = ['课程A教师名字', '课程B教师名字'];//你想选的课程的教师名，顺序与课程匹配，或者'a'表示任意教师
     try {
         var lcid = document.getElementsByName('LCID')[0].value;
         var xh = document.getElementsByName('XH')[0].value;
@@ -28,7 +29,7 @@
             if (divs.length<9) {continue;}
             if (divs[9].textContent == '撤销' || divs[9].textContent == '撤选') {continue;}
             for (var j = 0; j < className.length; j++) {
-                if (className[j] == divs[1].textContent) {
+                if (className[j] == divs[1].textContent && (teacherName[j] == divs[2].textContent || teacherName[j] == 'a')) {
                     var bjdm = item.getAttribute('onclick').split("'")[3];
                     console.log(base64encode(escape(bjdm)));
                     bjdm = base64encode(escape(bjdm));
